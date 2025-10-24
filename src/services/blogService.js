@@ -29,3 +29,7 @@ export async function follow(blogId, userId) {
     // return blog.save();
     return Blog.findByIdAndUpdate(blogId, {$push: {followers: userId}});
 }
+
+export function remove(blogsId, userId) {
+    return Blog.findByIdAndDelete(blogsId);
+}

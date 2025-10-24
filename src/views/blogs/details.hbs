@@ -22,7 +22,7 @@
         {{#if isOwner}}
         <!-- Only for registered user and creator of the blog post-->
         <a href="#">Edit</a>
-        <a href="#">Delete</a>
+        <a href="/blogs/{{blog.id}}/delete">Delete</a>
         {{else}}
             {{#if isFollowing}}
             <!-- logged in user who has already followed the blog-->
