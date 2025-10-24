@@ -4,6 +4,10 @@ export function getAll() {
     return Blog.find().select({title: true, category: true, imageUrl: true}); //.select({title: true, category: true, imageUrl: true}) is not mandatory or required, just to return only these fields
 }
 
+export function getOne(blogId) {
+    return Blog.findById(blogId); 
+}
+
 export function getLatest(){
     return Blog.find()
     .sort({_id: -1})

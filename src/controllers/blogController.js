@@ -37,4 +37,12 @@ blogController.post('/create', isAuth, async (req, res) => {
         
 });
 
+blogController.get('/:blogId/details', async (req, res) => {
+    const blogId = req.params.blogId;
+
+    const blog = await blogService.getOne(blogId);
+
+    res.render('blogs/details', { blog });
+});
+
 export default blogController;
