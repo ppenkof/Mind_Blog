@@ -14,7 +14,7 @@ const app = express();
 //Connect to DB
 try {
     await mongoose.connect('mongodb://localhost:27017', {
-        dbName: 'exam_prep_db' 
+        dbName: 'MindBlog', 
     });
 
     console.log('Connected to DB successfuly...')

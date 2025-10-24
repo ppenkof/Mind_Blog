@@ -110,6 +110,7 @@ Mind_Blog exam preparation for JS_BackEnd
  - [ ] Use async jwt
  - [ ] Refresh token
 
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 ## Steps to Use the Skeleton Project
  - [x] Install dependencies `npm i`
  - [x] Remove old resources and add new resources `/src/public`

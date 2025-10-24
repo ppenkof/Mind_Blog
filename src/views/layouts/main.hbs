@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{{!-- <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -50,6 +50,53 @@
             <p>@Friendly World</p>
         </footer>
     </div>
+</body>
+
+</html> --}}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{getTitle}}</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+
+<body>
+
+    <div class="navigation">
+        <nav>
+            <img src="/images/logo.jpg">
+            <ul>
+                <!-- Guest users and Logged users -->
+                <li><a href="/">Home</a></li>
+                <li><a href="#">Blogs</a></li>
+
+                {{#if isAuthenticated}}
+                <!--For loggin users-->
+                <li><a href="#">Profile</a></li>
+                <li><a href="#">Create Blog</a></li>
+                <li><a href="/users/logout">Logout</a></li>
+                {{else}}
+                <!--For guest users-->
+                <li><a href="/users/login">Login</a></li>
+                <li><a href="/users/register">Register</a></li>
+                {{/if}}
+            </ul>
+        </nav>
+    </div>
+
+    <main>
+
+        {{{body}}}
+
+    </main>
+
+    <footer>Back-End 2022</footer>
 </body>
 
 </html>
