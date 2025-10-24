@@ -20,11 +20,13 @@
         <!-- Only for registered user and creator of the blog post-->
         <a href="#">Edit</a>
         <a href="#">Delete</a>
-        {{/if}}
+        {{else}}
         <!-- logged in user who has not yet followed the blog-->
-        {{!-- <a href="#">Follow</a> --}}
+        <a href="#">Follow</a>
         <!-- logged in user who has already followed the blog-->
-        {{!-- <p class="follow-pub">You already follow this blog!</p> --}}
+        <p class="follow-pub">You already follow this blog!</p>
+        {{/if}}
+        
     </div>
     {{/if}}
 </div>
