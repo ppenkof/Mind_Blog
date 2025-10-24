@@ -21,6 +21,10 @@ const blogSchema = new Schema({
         type: Types.ObjectId,
         ref: 'User',
     },
+    followers: [{
+        type: Types.ObjectId,
+        ref: 'User',
+    }],
 });
 
 const Blog = model('Blog', blogSchema);

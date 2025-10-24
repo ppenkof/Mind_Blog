@@ -44,8 +44,17 @@ blogController.get('/:blogId/details', async (req, res) => {
     const blog = await blogService.getOne(blogId);
     const isOwner = blog.owner.equals(userId);
     // console.log(isOwner);
+    const followers = blog.followers.map(f=>f.username).join(', ');
 
-    res.render('blogs/details', { blog, isOwner });
+    res.render('blogs/details', { blog, isOwner, followers });
+});
+
+blogController.get('/:blogId/follow', isAuth, async (req, res) => {
+    const blogId = req.params.blogId;
+    const userId = req.user._id;
+
+    await blogService.follow(blogId, userId);
+    res.redirect(`/blogs/${blogId}/details`);
 });
 
 export default blogController;

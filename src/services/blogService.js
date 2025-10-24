@@ -5,7 +5,7 @@ export function getAll() {
 }
 
 export function getOne(blogId) {
-    return Blog.findById(blogId).populate('owner'); 
+    return Blog.findById(blogId).populate(['owner', 'followers']); 
 }
 
 export function getLatest(){
@@ -20,4 +20,12 @@ export function create(blogData, userId) {
         ...blogData, 
         owner: userId
     });
+}
+
+export async function follow(blogId, userId) {
+    // const blog = await Blog.findById(blogId);
+    // blog.followers.push(userId);
+
+    // return blog.save();
+    return Blog.findByIdAndUpdate(blogId, {$push: {followers: userId}});
 }
