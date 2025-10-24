@@ -44,9 +44,10 @@ blogController.get('/:blogId/details', async (req, res) => {
     const blog = await blogService.getOne(blogId);
     const isOwner = blog.owner.equals(userId);
     // console.log(isOwner);
-    const followers = blog.followers.map(f=>f.username).join(', ');
+    const followers = blog.followers.map(f=>f.email).join(', ');
+    const isFollowing = blog.followers.some(f=>f.equals(userId));
 
-    res.render('blogs/details', { blog, isOwner, followers });
+    res.render('blogs/details', { blog, isOwner, followers, isFollowing });
 });
 
 blogController.get('/:blogId/follow', isAuth, async (req, res) => {

@@ -6,10 +6,13 @@
         <h2>{{blog.title}}</h2>
         <h3>{{blog.category}}</h3>
             <h3>By: {{blog.owner.email}}</h3>
+            {{#if followers}}
             <!--If there are followers-->
             <h4>Follow By: {{followers}}</h4>
+            {{else}}
             <!--If there are no followers-->
             <h4>There are no followers yet!</h4>
+            {{/if}}
     </div>
     <div class="details-container-content">
         <p>{{blog.content}}</p>
@@ -21,12 +24,14 @@
         <a href="#">Edit</a>
         <a href="#">Delete</a>
         {{else}}
-        <!-- logged in user who has not yet followed the blog-->
-        <a href="/blogs/{{blog.id}}/follow">Follow</a>
-        <!-- logged in user who has already followed the blog-->
-        <p class="follow-pub">You already follow this blog!</p>
+            {{#if isFollowing}}
+            <!-- logged in user who has already followed the blog-->
+            <p class="follow-pub">You already follow this blog!</p>
+            {{else}}
+            <!-- logged in user who has not yet followed the blog-->
+            <a href="/blogs/{{blog.id}}/follow">Follow</a>
+            {{/if}}        
         {{/if}}
-        
     </div>
     {{/if}}
 </div>
