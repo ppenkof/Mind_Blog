@@ -2,7 +2,7 @@ import User from '../models/User.js';
 import bcrypt from 'bcrypt';
 import { generateToken } from '../utils/tokenUtils.js';
 
-export async function register(email, password, repeatPasword) {
+export async function register(email, username, password, repeatPasword) {
     const user = await User.findOne({ email });
 
     if (user) {
@@ -13,7 +13,7 @@ export async function register(email, password, repeatPasword) {
         throw new Error('Passwords do not match');
     }
 
-    const createdUser = await User.create({ email, password }); 
+    const createdUser = await User.create({ email, username, password, repeatPasword }); 
     const token = generateToken(createdUser);
     return token;
 }

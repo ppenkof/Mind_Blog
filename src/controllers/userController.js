@@ -14,16 +14,16 @@ userController.get('/register', isGuest,(req, res) => {
 
 //Register POST
 userController.post('/register', isGuest, async (req, res) => {
-    const {email, password, repeatPassword} = req.body;
+    const {email, username, password, repeatPassword} = req.body;
 
     try {
-        const token = await userService.register(email, password, repeatPassword);
+        const token = await userService.register(email, username, password, repeatPassword);
         res.cookie('auth', token);
         res.redirect('/');
     } catch (error) {
         res.status(400).render('users/register', {
             error: getErrorMessage(error),
-            user: {email}
+            user: {email, username}
         });
     }
    
