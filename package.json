@@ -1,0 +1,25 @@
+{
+  "name": "mind_blog",
+  "version": "1.0.0",
+  "description": "Mind_Blog exam preparation for JS_BackEnd",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ppenkof/Mind_Blog.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/ppenkof/Mind_Blog/issues"
+  },
+  "homepage": "https://github.com/ppenkof/Mind_Blog#readme",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
