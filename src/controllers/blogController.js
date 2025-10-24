@@ -1,13 +1,40 @@
 import { Router } from "express";
+import {blogService} from "../services/index.js"; 
+import { isAuth } from "../middlewares/authMiddleware.js";
+import { get } from "mongoose";
+import { getErrorMessage } from "../utils/errorUtils.js";
 
 const blogController = Router();
+
+blogController.get('/', async (req, res) => {
+    const blogs = await blogService.getAll();
+
+    res.render('blogs', { blogs });
+});
 
 blogController.get('/create', (req, res) => {
     res.render('blogs/create');
 });
 
-blogController.post('/create', (req, res) => {
+blogController.post('/create', isAuth, async (req, res) => {
     const blogData = req.body;
+    const userId = req.user._id;
+
+    try {
+        await blogService.create(blogData, userId)
+        res.redirect('/blogs');
+
+    } catch (error) {
+
+        res.render('blogs/create', {
+        error: getErrorMessage(error),
+         blog: blogData,
+        });
+
+    }
+    
+       
+        
 });
 
 export default blogController;
