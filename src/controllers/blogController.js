@@ -32,17 +32,20 @@ blogController.post('/create', isAuth, async (req, res) => {
         });
 
     }
-    
-       
         
 });
 
 blogController.get('/:blogId/details', async (req, res) => {
     const blogId = req.params.blogId;
+    const userId = req.user._id;
+    // console.log(userId);
+    // console.log(req.user);
 
     const blog = await blogService.getOne(blogId);
+    const isOwner = blog.owner.equals(userId);
+    // console.log(isOwner);
 
-    res.render('blogs/details', { blog });
+    res.render('blogs/details', { blog, isOwner });
 });
 
 export default blogController;

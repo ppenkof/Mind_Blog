@@ -5,7 +5,7 @@ export function getAll() {
 }
 
 export function getOne(blogId) {
-    return Blog.findById(blogId); 
+    return Blog.findById(blogId).populate('owner'); 
 }
 
 export function getLatest(){
