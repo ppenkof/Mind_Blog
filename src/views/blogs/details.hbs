@@ -21,7 +21,7 @@
     <div class="btn-container">
         {{#if isOwner}}
         <!-- Only for registered user and creator of the blog post-->
-        <a href="#">Edit</a>
+        <a href="/blogs/{{blog.id}}/edit">Edit</a>
         <a href="/blogs/{{blog.id}}/delete">Delete</a>
         {{else}}
             {{#if isFollowing}}

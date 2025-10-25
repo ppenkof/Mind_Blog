@@ -5,7 +5,8 @@ export function getAll() {
 }
 
 export function getOne(blogId) {
-    return Blog.findById(blogId).populate(['owner', 'followers']); 
+    const found = Blog.findById(blogId).populate(['owner', 'followers']);
+    return found;
 }
 
 export function getLatest(){
@@ -30,6 +31,17 @@ export async function follow(blogId, userId) {
     return Blog.findByIdAndUpdate(blogId, {$push: {followers: userId}});
 }
 
-export function remove(blogsId, userId) {
+export async function remove(blogsId, userId) {
+    const blog = await Blog.findById(blogsId);
+
+    if(!blog.owner.equals(userId)){
+        throw new Error('You are not the owner of this blog!');
+    }
+    
     return Blog.findByIdAndDelete(blogsId);
+}
+
+export function edit(blogId, blogData){
+    const found = Blog.findByIdAndUpdate(blogId, blogData, {runValidators: true});
+    return found;
 }
