@@ -4,7 +4,7 @@ import handlebars from 'express-handlebars';
 import mongoose, { get, mongo } from 'mongoose';
 import cokieParser from 'cookie-parser';
 import { authMiddleware } from './middlewares/authMiddleware.js';
-import helpers from './models/helpers/index.js';
+import helpers from './views/helpers/index.js';
 import 'dotenv/config';
 import { errorMiddleware } from './middlewares/errorMiddleware.js';
 

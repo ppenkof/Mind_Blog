@@ -45,3 +45,7 @@ export function edit(blogId, blogData){
     const found = Blog.findByIdAndUpdate(blogId, blogData, {runValidators: true});
     return found;
 }
+
+export function getAllByOwner(ownerId){
+    return Blog.find({owner: ownerId});
+}
