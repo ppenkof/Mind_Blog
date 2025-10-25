@@ -105,4 +105,8 @@ blogController.post('/:blogId/edit', isAuth, async (req, res) => {
    
 });
 
+//JSON parser if has a requirements for restApI
+//blogController.get('/api/xxx', async (req, res) => {
+//    res.json({});
+
 export default blogController;

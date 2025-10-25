@@ -11,7 +11,7 @@ export function getOne(blogId) {
 
 export function getLatest(){
     return Blog.find()
-    .sort({_id: -1})
+    .sort({_id: -1}) // if timestaps:true in model, you can sort by createdAt: -1: .sort({createdAt: -1})
     .limit(3);//.select({title: true, category: true, imageUrl: true});
 }
 
@@ -28,7 +28,16 @@ export async function follow(blogId, userId) {
     // blog.followers.push(userId);
 
     // return blog.save();
-    return Blog.findByIdAndUpdate(blogId, {$push: {followers: userId}});
+
+    //return Blog.findByIdAndUpdate(blogId, {$push: {followers: userId}}); //This is not by requirements
+    const blog = await Blog.findById(blogId);
+
+    if(blog.owner.equals(userId)){
+        throw new Error('Owner cannot follow blog!');
+    }
+
+    blog.followers.push(userId);
+    return blog.save(); 
 }
 
 export async function remove(blogsId, userId) {
@@ -48,4 +57,8 @@ export function edit(blogId, blogData){
 
 export function getAllByOwner(ownerId){
     return Blog.find({owner: ownerId});
+}
+
+export function getAllByFollower(followerId){
+    return Blog.find().in('followers', followerId);
 }

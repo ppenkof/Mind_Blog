@@ -43,6 +43,9 @@ app.use(cokieParser());
 //Body parser
 app.use(express.urlencoded({ extended: false })); 
 
+//JSON parser if has a requirements for restApI
+//app.use(express.json());
+
 //Use Auth middleware
 app.use(authMiddleware);
 

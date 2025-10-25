@@ -14,9 +14,11 @@ homeController.get('/profile', isAuth, async (req, res) => {
     const userId = req.user._id;
 
     const createdBlogs = await blogService.getAllByOwner(userId);
+    const followedBlogs = await blogService.getAllByFollower(userId);
     //const createdBlogsCount = createdBlogs.length; //You can use this or helpers 'count' in views to get the count
-    res.render('profile', {createdBlogs});
+    res.render('profile', {createdBlogs, followedBlogs});
 });
+
 
 
 export default homeController;
